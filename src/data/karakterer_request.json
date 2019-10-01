@@ -1,0 +1,53 @@
+{"tabell_id":308,"api_versjon":1,"statuslinje":"N","begrensning":"1000","kodetekst":"J","desimal_separator":".",
+   "groupBy":["Emnekode", "Karakter", "Årstall", "Institusjonskode", "Semester"],
+   "sortBy":[],
+   "filter":[
+      {
+         "variabel": "Institusjonskode",
+         "selection": {
+            "filter": "item",
+            "values": [
+               "###INSTITUSJONSKODE###"
+            ],
+            "exclude": [
+               ""
+            ]
+         }
+      },
+      {
+         "variabel": "Studieprogramkode",
+         "selection": {
+            "filter": "all",
+            "values": [
+               "###STUDIEPROGRAMKODE###"
+            ],
+            "exclude": [
+               ""
+            ]
+         }
+      },
+      {
+         "variabel": "Emnekode",
+         "selection": {
+            "filter": "item",
+            "values": [
+               "###EMNEKODE###"
+            ],
+            "exclude": [
+               ""
+            ]
+         }
+      },
+      {
+         "variabel": "Semester",
+         "selection": {
+            "filter": "all",
+            "values": [
+               ""
+            ],
+            "exclude": [
+               ""
+            ]
+         }
+      }
+   ]} 

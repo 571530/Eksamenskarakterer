@@ -1,0 +1,37 @@
+{"tabell_id":347,"api_versjon":1,"statuslinje":"N","begrensning":"1000","kodetekst":"J","desimal_separator":".",
+    "sortBy":["Institusjonskode", "Avdelingskode"],
+    "filter":[
+       {
+          "variabel": "Institusjonskode",
+          "selection": {
+             "filter": "item",
+             "values": [
+                "###INSTITUSJONSKODE###"
+             ]
+          }
+       },
+       {
+          "variabel": "Avdelingskode",
+          "selection": {
+             "filter": "all",
+             "values": [
+                "*"
+             ],
+             "exclude": [
+                ""
+             ]
+          }
+       },
+       {
+          "variabel": "Årstall",
+          "selection": {
+             "filter": "top",
+             "values": [
+                "1"
+             ],
+             "exclude": [
+                ""
+             ]
+          }
+       }
+    ]} 

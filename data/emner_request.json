@@ -1,0 +1,35 @@
+{"tabell_id":208,"api_versjon":1,"statuslinje":"N","begrensning":"1000","kodetekst":"J","desimal_separator":".",
+   "sortBy":["Emnekode", "Institusjonskode", "Studieprogramkode", "Årstall"],
+   "filter":[
+      {
+         "variabel": "Institusjonskode",
+         "selection": {
+            "filter": "all",
+            "values": [
+               ""
+            ]
+         }
+      },
+      {
+         "variabel": "Emnekode",
+         "selection": {
+            "filter": "greaterthan",
+            "values": [
+               "###EMNEKODE###"
+            ]
+         }
+      },
+
+      {
+         "variabel": "Årstall",
+         "selection": {
+            "filter": "top",
+            "values": [
+               "2"
+            ],
+            "exclude": [
+               ""
+            ]
+         }
+      }
+   ]} 

@@ -1,0 +1,16 @@
+{"tabell_id":211,"api_versjon":1,"statuslinje":"N","begrensning":"1000","kodetekst":"J","desimal_separator":".",
+    "sortBy":["Institusjonsnavn"],
+    "filter":[
+       {
+          "variabel": "Institusjonskode",
+          "selection": {
+             "filter": "all",
+             "values": [
+                "*"
+             ],
+             "exclude": [
+                ""
+             ]
+          }
+       }
+    ]} 
