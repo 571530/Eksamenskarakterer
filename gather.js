@@ -107,7 +107,7 @@ async function gather_emner() {
 async function gather_data() {
     const data = await gather_institusjoner();
 
-    fs.writeFileSync('data/data1.json', JSON.stringify(data, null, 2));
+    fs.writeFileSync('data/data.json', JSON.stringify(data, null, 2));
 }
 
 gather_data();
