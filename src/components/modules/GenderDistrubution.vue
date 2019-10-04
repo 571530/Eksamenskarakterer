@@ -1,31 +1,27 @@
 <template>
-  <v-card class="distrubution">
-    <v-card-text>
-      <p class="display-1 text--primary">Kjønnsfordeling</p>
-      <p>Fordeling av kjønn</p>
-      <div class="text--primary">
-        <GChart
-          type="PieChart"
-          :options="chartOptions"
-          :data="distrubutionChartData"
-          @ready="onChartReady"
-        ></GChart>
-      </div>
-    </v-card-text>
-  </v-card>
+  <Module title="Kjønnfordeling" label="Fordeling av kjønn">
+    <GChart
+      type="PieChart"
+      :options="chartOptions"
+      :data="distrubutionChartData"
+      @ready="onChartReady"
+    ></GChart>
+  </Module>
 </template>
 
 <script>
 import { GChart } from "vue-google-charts";
 import PieChartMixin from "../../mixins/PieChartMixin";
+import Module from "./Module";
 
 export default {
   mixins: [PieChartMixin],
   props: {
-    karakterer: Array
+    grades: Array
   },
   components: {
-    GChart
+    GChart,
+    Module
   },
   methods: {
     getDistrubution(grades) {
@@ -44,7 +40,7 @@ export default {
   },
   computed: {
     distrubutionChartData: function() {
-      const dist = this.getDistrubution(this.karakterer);
+      const dist = this.getDistrubution(this.grades || []);
       const data = [
         ["Kjønn", "Antall"],
         ["Mann", dist.male],

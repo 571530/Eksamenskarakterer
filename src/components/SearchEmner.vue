@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     filter: function(search, emne) {
-      return emne.navn.toLowerCase().includes(search.toLowerCase());
+      return emne.navn.toLowerCase().includes(search.toLowerCase()) || emne.kode.toLowerCase().includes(search.toLowerCase());
     },
     getInitialEmner: function() {
       return this.getEmner(this.$route.params.iid, this.$route.params.sid);

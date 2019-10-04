@@ -6,38 +6,38 @@
           <v-list dense>
             <v-list-item>
               <v-list-item-action>
-                <Link href="/institusjoner/search">
+                <RouterLink href="/institusjoner/search">
                   <v-icon>mdi-school</v-icon>
-                </Link>
+                </RouterLink>
               </v-list-item-action>
               <v-list-item-content>
-                <Link href="/institusjoner/search">
+                <RouterLink href="/institusjoner/search">
                   <v-list-item-title>Høyskoler og universiteter</v-list-item-title>
-                </Link>
+                </RouterLink>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
               <v-list-item-action>
-                <Link href="/studieprogram/search">
+                <RouterLink href="/studieprogram/search">
                   <v-icon>mdi-book-open-page-variant</v-icon>
-                </Link>
+                </RouterLink>
               </v-list-item-action>
               <v-list-item-content>
-                <Link href="/studieprogram/search">
+                <RouterLink href="/studieprogram/search">
                   <v-list-item-title>Studieprogram</v-list-item-title>
-                </Link>
+                </RouterLink>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
               <v-list-item-action>
-                <Link href="/emner/search">
+                <RouterLink href="/emner/search">
                   <v-icon>mdi-chart-bar</v-icon>
-                </Link>
+                </RouterLink>
               </v-list-item-action>
               <v-list-item-content>
-                <Link href="/emner/search">
+                <RouterLink href="/emner/search">
                   <v-list-item-title>Emner</v-list-item-title>
-                </Link>
+                </RouterLink>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -51,7 +51,7 @@
     <v-app-bar app dense clipped-left tile>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <Link href="/">Eksamenskarakterer</Link>
+        <RouterLink href="/">Eksamenskarakterer</RouterLink>
       </v-toolbar-title>
     </v-app-bar>
 
@@ -62,14 +62,14 @@
 </template>
 
 <script>
-import Link from "./Link";
+import RouterLink from "./RouterLink";
 
 export default {
   data: () => ({
     drawer: null
   }),
   components: {
-    Link
+    RouterLink
   },
   created() {
     this.$vuetify.theme.dark = localStorage.getItem("darkMode") == 'true';

@@ -1,32 +1,27 @@
 <template>
-  <v-card class="distrubution">
-    <v-card-text>
-      <p class="display-1 text--primary">Karakterfordeling</p>
-      <p>Fordeling av karakterer</p>
-      <div class="text--primary">
-        <GChart
-          :settings="{packages: ['bar']}"
-          :data="distrubutionChartData"
-          :options="chartOptions"
-          :createChart="(el, google) => new google.charts.Bar(el)"
-          @ready="onChartReady"
-        ></GChart>
-      </div>
-    </v-card-text>
-  </v-card>
+  <Module title="Karakterfordeling" label="Fordeling av karakterer">
+    <GChart
+      :settings="{packages: ['bar']}"
+      :data="distrubutionChartData"
+      :options="chartOptions"
+      :createChart="(el, google) => new google.charts.Bar(el)"
+      @ready="onChartReady"
+    ></GChart>
+  </Module>
 </template>
 
 <script>
 import { GChart } from "vue-google-charts";
 import BarCharMixin from "../../mixins/BarChartMixin";
+import Module from './Module';
 
 export default {
   mixins: [BarCharMixin],
   props: {
-    karakterer: Array
+    grades: Array
   },
   components: {
-    GChart
+    GChart, Module
   },
   methods: {
     getDistrubution(grades) {
@@ -64,7 +59,7 @@ export default {
   },
   computed: {
     distrubutionChartData: function() {
-      const dist = this.getDistrubution(this.karakterer);
+      const dist = this.getDistrubution(this.grades || []);
       const data = [];
       if (this.hideByGender) {
         data.push(["Karakter", "Antall"]); // header

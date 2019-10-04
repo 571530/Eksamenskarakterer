@@ -4,8 +4,7 @@ export default {
     }),
     computed: {
         chartOptions: function () {
-            if (!this.chartsLib) return null;
-            return this.chartsLib.charts.Bar.convertOptions({
+            return {
                 chart: {},
                 backgroundColor: this.$vuetify.theme.dark ? this.$vuetify.theme.themes.dark.secondary : "white",
                 legend: {
@@ -14,12 +13,12 @@ export default {
                     }
                 },
                 pieSliceBorderColor: this.$vuetify.theme.dark ? this.$vuetify.theme.themes.dark.secondary : "white"
-            });
+            };
+        }
+    },
+    methods: {
+        onChartReady(chart, google) {
+            this.chartsLib = google;
+        }
     }
-},
-methods: {
-    onChartReady(chart, google) {
-        this.chartsLib = google;
-    }
-}
 }

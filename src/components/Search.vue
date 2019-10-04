@@ -1,28 +1,28 @@
 <template>
-  <v-container class="fill-height" fluid>
-    <v-row align="center" justify="center">
-      <v-col cols="12" sm="6">
-        <v-text-field :label="label" single-line solo autofocus @change="filter"></v-text-field>
-        <div>
+  <v-container>
+      <v-row justify="center">
+        <v-text-field class="search-bar" :label="label" single-line solo autofocus @change="filter"></v-text-field>
+      </v-row>
+      <v-row>
           <v-card class="mx-auto" max-width="600" tile>
-            <component
-              v-for="item in currentList"
-              :key="item.navn + item.kode"
-              :obj="item"
-              :is="listComponent"
-            ></component>
+            <v-list dense two-line class="list">
+              <component
+                v-for="item in currentList"
+                :key="item.navn + item.kode"
+                :obj="item"
+                :is="listComponent"
+              ></component>
+            </v-list>
           </v-card>
-          <v-pagination v-model="page" :length="numPages" :total-visible="10"></v-pagination>
-        </div>
-      </v-col>
-    </v-row>
+      </v-row>
+      <v-row>
+        <v-pagination v-model="page" :length="numPages" :total-visible="5"></v-pagination>
+      </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
 import ArrayMixin from "../mixins/ArrayMixin";
-import Institusjon from "./Institusjon.vue";
-
 export default {
   name: "search",
   props: {
@@ -57,15 +57,18 @@ export default {
   created: function() {
     this.filter("");
   },
-  components: {
-    Institusjon
-  },
   computed: {
-    currentList: function () {
-      return this.take(this.skip(this.filteredList, (this.page - 1) * this.pageSize), this.pageSize);
+    currentList: function() {
+      return this.take(
+        this.skip(this.filteredList, (this.page - 1) * this.pageSize),
+        this.pageSize
+      );
     },
-    numPages: function () {
-      return Math.floor(this.filteredList.length / this.pageSize) + (this.filteredList.length % this.pageSize != 0 ? 1 : 0);
+    numPages: function() {
+      return (
+        Math.floor(this.filteredList.length / this.pageSize) +
+        (this.filteredList.length % this.pageSize != 0 ? 1 : 0)
+      );
     }
   },
   methods: {
@@ -79,5 +82,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.search-bar {
+  max-width: 600px;
+}
 </style>

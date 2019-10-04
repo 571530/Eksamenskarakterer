@@ -14,7 +14,7 @@
         @input="$emit('input', newValue)"
         persistent-hint
       ></v-select>
-      <div v-else class="title text-center">Fant ingen statistikk</div>
+      <div v-else-if="!loading" class="title text-center">Fant ingen statistikk</div>
     </v-card-actions>
   </v-card>
 </template>
@@ -23,7 +23,8 @@
 export default {
   props: {
     semesters: Array,
-    value: Array
+    value: Array,
+    loading: Boolean
   },
   data: ()=> ({
     newValue: []

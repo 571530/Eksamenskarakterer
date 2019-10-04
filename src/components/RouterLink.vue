@@ -1,5 +1,6 @@
 <template>
     <div @click="navigate(href)">
+        <span v-if="label">{{label}}</span>
         <slot></slot>
     </div>
 </template>
@@ -9,6 +10,7 @@
 export default {
   name: 'index',
   props: {
+      label: String,
       href: String
   },
   methods: {
@@ -26,5 +28,4 @@ export default {
         display: inline-block;
         cursor: pointer;
     }
-</style>>
 </style>

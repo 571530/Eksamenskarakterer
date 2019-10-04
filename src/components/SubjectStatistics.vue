@@ -2,18 +2,18 @@
   <div class="container">
     <v-row justify="center">
       <v-col lg="6">
-        <SemesterPicker :semesters="semesters" v-model="chosenSemesters"></SemesterPicker>
+        <SemesterPicker :semesters="semesters" :loading="loading" v-model="chosenSemesters"></SemesterPicker>
       </v-col>
     </v-row>
     <v-row v-if="chosenSemesters.length > 0">
       <v-col lg="6">
-        <FailRate :karakterer="currentGrades"></FailRate>
+        <FailRate :grades="currentGrades"></FailRate>
       </v-col>
       <v-col lg="6">
-        <GenderDistrubution :karakterer="currentGrades"></GenderDistrubution>
+        <GenderDistrubution :grades="currentGrades"></GenderDistrubution>
       </v-col>
-      <v-col lg="12">
-        <GradeDistrubution :karakterer="currentGrades"></GradeDistrubution>
+      <v-col lg="6">
+        <GradeDistrubution :grades="currentGrades"></GradeDistrubution>
       </v-col>
     </v-row>
     <v-overlay :value="loading">

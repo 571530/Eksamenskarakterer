@@ -2,21 +2,26 @@
   <v-container>
     <v-row justify="center">
       <v-col lg="6">
-        <SemesterPicker :semesters="semesters" v-model="chosenSemesters"></SemesterPicker>
+        <SemesterPicker :semesters="semesters" :loading="loading" v-model="chosenSemesters"></SemesterPicker>
       </v-col>
     </v-row>
     <v-row v-if="chosenSemesters.length > 0">
       <v-col lg="6">
-        <FailRate :karakterer="currentGrades"></FailRate>
+        <FailRate :grades="currentGrades"></FailRate>
       </v-col>
       <v-col lg="6">
-        <GenderDistrubution :karakterer="currentGrades"></GenderDistrubution>
+        <GenderDistrubution :grades="currentGrades"></GenderDistrubution>
       </v-col>
       <v-col lg="6">
-        <GradeDistrubution :karakterer="currentGrades"></GradeDistrubution>
+        <GradeDistrubution :grades="currentGrades"></GradeDistrubution>
       </v-col>
       <v-col lg="6">
-        <HighestFailRate :karakterer="currentGrades"></HighestFailRate>
+        <HighestFailRate :grades="currentGrades"></HighestFailRate>
+      </v-col>
+    </v-row>
+    <v-row v-if="chosenSemesters.length > 0">
+      <v-col xs="12">
+        <Table :grades="currentGrades"></Table>
       </v-col>
     </v-row>
     <v-overlay :value="loading">
@@ -30,6 +35,8 @@ import GradeDistrubution from "./modules/GradeDistrubution";
 import GenderDistrubution from "./modules/GenderDistrubution";
 import FailRate from "./modules/FailRate";
 import HighestFailRate from "./modules/HighestFailRate";
+import Table from "./modules/Table";
+import Module from "./modules/Module";
 import SemesterPicker from "@/components/SemesterPicker";
 import ApiMixin from "@/mixins/ApiMixin";
 import StatisticsMixin from "../mixins/StatisticsMixin";
@@ -41,14 +48,16 @@ export default {
     grades: [],
     semesters: [],
     chosenSemesters: [],
-    loading: true
+    loading: true,
+    gradeDistrubution: GradeDistrubution
   }),
   components: {
     GradeDistrubution,
     FailRate,
     GenderDistrubution,
     SemesterPicker,
-    HighestFailRate
+    HighestFailRate,
+    Table
   },
   computed: {
     currentGrades() {
@@ -68,5 +77,4 @@ export default {
 </script>
 
 <style lang="scss">
-  
 </style>

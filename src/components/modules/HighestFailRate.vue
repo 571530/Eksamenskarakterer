@@ -1,43 +1,40 @@
 <template>
-  <FailRate
-    :karakterer="highestFailRateSubject && highestFailRateSubject.values || []"
-    :label="`${highestFailRateSubject && highestFailRateSubject.key} har høyest strykprosent`"
-  ></FailRate>
+  <v-card>
+    <v-card-text>
+      <p class="display-1 text--primary">
+        <RouterLink
+          :href="`/institusjon/${this.$route.params.iid}/${this.$route.params.sid}/${highestFailRateSubject.key}`"
+          class="link"
+        >{{highestFailRateSubject.key}}</RouterLink>
+        har høyest strykprosent {{highestFailRateSubject.failRate.toFixed(1)}} %
+      </p>
+      <p>Fordeling av stryk og bestått for faget <RouterLink
+          :href="`/institusjon/${this.$route.params.iid}/${this.$route.params.sid}/${highestFailRateSubject.key}`"
+          class="link"
+        >{{highestFailRateSubject.key}}</RouterLink></p>
+      <p></p>
+      <div class="text--primary">
+        <FailRateGraph :grades="highestFailRateSubject && highestFailRateSubject.values || []"></FailRateGraph>
+      </div>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
-import FailRate from "./FailRate";
-import ArrayMixin from "../../mixins/ArrayMixin";
+import FailRateGraph from "./FailRateGraph";
+import StatisticsMixin from "../../mixins/StatisticsMixin";
+import RouterLink from "../RouterLink";
 
 export default {
-  mixins: [ArrayMixin],
+  mixins: [StatisticsMixin],
   props: {
-    karakterer: Array
+    grades: Array
   },
   components: {
-    FailRate
+    FailRateGraph,
+    RouterLink
   },
-  mounted() {},
   methods: {
-    getFailRatePercentage: function(grades) {
-      const failed = grades
-        .filter(grade => grade["Karakter"] == "F" || grade["Karakter"] == "H")
-        .reduce((acc, k) => {
-          acc += Number(k["Antall kandidater totalt"]);
-          return acc;
-        }, 0);
-      const passed = grades
-        .filter(grade => grade["Karakter"] != "F" && grade["Karakter"] != "H")
-        .reduce((acc, k) => {
-          acc += Number(k["Antall kandidater totalt"]);
-          return acc;
-        }, 0);
-      if (passed + failed == 0) {
-        return 0;
-      } else {
-        return (failed / (passed + failed)) * 100;
-      }
-    },
     getHighestFailRateSubject(grades) {
       return this.groupBy(grades, "Emnekode")
         .map(emne => {
@@ -49,11 +46,14 @@ export default {
   },
   computed: {
     highestFailRateSubject() {
-      return this.getHighestFailRateSubject(this.karakterer);
+      return this.getHighestFailRateSubject(this.grades);
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .link {
+    text-decoration: underline;
+  }
 </style>
