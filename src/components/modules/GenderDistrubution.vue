@@ -1,5 +1,5 @@
 <template>
-  <Module title="Kjønnfordeling" label="Fordeling av kjønn">
+  <Module title="Kjønnsfordeling" label="Fordeling av kjønn">
     <GChart
       type="PieChart"
       :options="chartOptions"
