@@ -13,6 +13,7 @@ import DataMixin from "../mixins/DataMixin";
 import Institusjon from "./Institusjon";
 
 export default {
+  title: 'Høyskoler og universiteter',
   name: "searchInstitusjon",
   components: {
     Search

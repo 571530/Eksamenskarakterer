@@ -15,13 +15,13 @@ import DataMixin from "../mixins/DataMixin";
 import Emne from "./Emne";
 
 export default {
+  title: "Emner",
   mixins: [DataMixin],
   data: () => ({
     listComponent: Emne,
   }),
   components: {
-    Search,
-    Emne
+    Search
   },
   props: {
     list: Array

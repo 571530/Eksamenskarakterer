@@ -14,6 +14,7 @@ import DataMixin from '../mixins/DataMixin'
 import Studieprogram from './Studieprogram' 
 
 export default {
+  title: 'Studieprogram',
   mixins: [
     DataMixin
   ],

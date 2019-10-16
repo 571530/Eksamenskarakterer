@@ -6,45 +6,45 @@
           <v-list dense>
             <v-list-item>
               <v-list-item-action>
-                <RouterLink href="/institusjoner/search">
+                <RouterLink href="/institusjoner/search" v-model="loading">
                   <v-icon>mdi-school</v-icon>
                 </RouterLink>
               </v-list-item-action>
               <v-list-item-content>
-                <RouterLink href="/institusjoner/search">
+                <RouterLink href="/institusjoner/search" v-model="loading">
                   <v-list-item-title>Høyskoler og universiteter</v-list-item-title>
                 </RouterLink>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
               <v-list-item-action>
-                <RouterLink href="/studieprogram/search">
+                <RouterLink href="/studieprogram/search" v-model="loading">
                   <v-icon>mdi-book-open-page-variant</v-icon>
                 </RouterLink>
               </v-list-item-action>
               <v-list-item-content>
-                <RouterLink href="/studieprogram/search">
+                <RouterLink href="/studieprogram/search" v-model="loading">
                   <v-list-item-title>Studieprogram</v-list-item-title>
                 </RouterLink>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
               <v-list-item-action>
-                <RouterLink href="/emner/search">
+                <RouterLink href="/emner/search" v-model="loading">
                   <v-icon>mdi-chart-bar</v-icon>
                 </RouterLink>
               </v-list-item-action>
               <v-list-item-content>
-                <RouterLink href="/emner/search">
+                <RouterLink href="/emner/search" v-model="loading">
                   <v-list-item-title>Emner</v-list-item-title>
                 </RouterLink>
               </v-list-item-content>
             </v-list-item>
           </v-list>
         </v-col>
-        <v-col>
+        <div>
           <v-switch v-model="$vuetify.theme.dark" @change="toggleDarkMode" label="Dark mode"></v-switch>
-        </v-col>
+        </div>
       </v-layout>
     </v-navigation-drawer>
 
@@ -57,6 +57,10 @@
 
     <v-content>
       <slot></slot>
+
+      <v-overlay :value="loading">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+      </v-overlay>
     </v-content>
   </v-app>
 </template>
@@ -66,13 +70,17 @@ import RouterLink from "./RouterLink";
 
 export default {
   data: () => ({
-    drawer: null
+    drawer: null,
+    loading: true
   }),
   components: {
     RouterLink
   },
   created() {
-    this.$vuetify.theme.dark = localStorage.getItem("darkMode") == 'true';
+    this.$vuetify.theme.dark = localStorage.getItem("darkMode") == "true";
+  },
+  mounted() {
+    this.loading = false;
   },
   methods: {
     toggleDarkMode(val) {

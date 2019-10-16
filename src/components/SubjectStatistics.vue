@@ -7,6 +7,9 @@
     </v-row>
     <v-row v-if="chosenSemesters.length > 0">
       <v-col lg="6">
+        <AverageGrade :grades="currentGrades"></AverageGrade>
+      </v-col>
+      <v-col lg="6">
         <FailRate :grades="currentGrades"></FailRate>
       </v-col>
       <v-col lg="6">
@@ -24,6 +27,7 @@
 <script>
 import GradeDistrubution from "./modules/GradeDistrubution";
 import GenderDistrubution from "./modules/GenderDistrubution";
+import AverageGrade from "./modules/AverageGrade";
 import FailRate from "./modules/FailRate";
 import SemesterPicker from "./SemesterPicker";
 import ApiMixin from "../mixins/ApiMixin";
@@ -37,11 +41,15 @@ export default {
     chosenSemesters: [],
     loading: true
   }),
+  title() {
+    return this.$route.params.eid 
+  },
   components: {
     GradeDistrubution,
     FailRate,
     GenderDistrubution,
-    SemesterPicker
+    SemesterPicker,
+    AverageGrade
   },
   computed: {
     currentGrades() {

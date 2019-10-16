@@ -36,7 +36,6 @@ import GenderDistrubution from "./modules/GenderDistrubution";
 import FailRate from "./modules/FailRate";
 import HighestFailRate from "./modules/HighestFailRate";
 import Table from "./modules/Table";
-import Module from "./modules/Module";
 import SemesterPicker from "@/components/SemesterPicker";
 import ApiMixin from "@/mixins/ApiMixin";
 import StatisticsMixin from "../mixins/StatisticsMixin";
@@ -44,6 +43,9 @@ import StatisticsMixin from "../mixins/StatisticsMixin";
 export default {
   name: "index",
   mixins: [ApiMixin, StatisticsMixin],
+  title() {
+    return this.$route.params.sid 
+  },
   data: () => ({
     grades: [],
     semesters: [],

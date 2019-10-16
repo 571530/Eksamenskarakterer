@@ -19,8 +19,6 @@
 </template>
 
 <script>
-import Module from "./Module";
-import FailRateGraph from "./FailRateGraph";
 import StatisticsMixin from "../../mixins/StatisticsMixin";
 
 export default {
@@ -32,7 +30,6 @@ export default {
     search: ''
   }),
   components: {
-    Module
   },
   computed: {
       tableData() {
@@ -43,7 +40,6 @@ export default {
               text: val,
               value: val
           }));
-          console.log(headers);
           return headers;
       }
   },

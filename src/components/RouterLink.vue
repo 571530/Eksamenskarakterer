@@ -11,12 +11,19 @@ export default {
   name: 'index',
   props: {
       label: String,
-      href: String
+      href: String,
+      value: Boolean,
   },
   methods: {
       navigate: function(href) {
         if (href !== this.$router.history.current.path) {
-            this.$router.push(href);
+            this.$emit('input', true);
+            setTimeout(() => {
+                this.$router.push(href).then(() => {
+                    this.$emit('input', false);
+                });
+            });
+
         }
       }
   }
